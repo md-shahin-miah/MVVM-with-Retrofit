@@ -25,7 +25,7 @@ public class PeopleActivity extends AppCompatActivity implements Observer {
     private PeopleViewModel peopleViewModel;
 
     private PeopleActivityBinding binding;
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
