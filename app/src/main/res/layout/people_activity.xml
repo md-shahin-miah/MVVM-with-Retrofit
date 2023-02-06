@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+        name="mainViewModel"
+        type="com.shahin.mvvmapplication.viewmodel.PeopleViewModel"/>
+  </data>
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+      <androidx.appcompat.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="?attr/colorPrimary"
+          app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+      <ProgressBar
+          android:id="@+id/progress_people"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:visibility="@{mainViewModel.peopleProgress}"/>
+
+      <TextView
+          android:id="@+id/label_status"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@{mainViewModel.messageLabel}"
+          app:visibility="@{mainViewModel.peopleLabel}"/>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recycler_people"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:clipToPadding="false"
+          android:scrollbars="vertical"
+          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          app:visibility="@{mainViewModel.peopleRecycler}"
+          tools:listitem="@layout/item_people"/>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="@{mainViewModel::onClickFabLoad}"
+        android:src="@drawable/ic_add_24dp"
+       />
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
